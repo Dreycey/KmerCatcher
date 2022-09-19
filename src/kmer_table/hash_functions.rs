@@ -1,25 +1,28 @@
 pub trait HashableFunction {
     fn hash(&self, prev_hash: &usize, string2hash: &String) -> usize;
-    fn new(salt: usize, hash_size: usize, pattern_size: usize) -> Self;
+    //fn new(salt: usize, hash_size: usize, pattern_size: usize) -> Self;
 }
 
+#[derive(Debug, Clone)]
 pub struct RegularHash {
     salt: usize,
     hash_size: usize,
 }
 
-impl HashableFunction for RegularHash {
+impl RegularHash {
     /// constructor for a regular hash function
     ///
     ///
-    fn new(salt: usize, hash_size: usize, _pattern_size: usize) -> RegularHash {
+    pub fn new(salt: usize, hash_size: usize, _pattern_size: usize) -> RegularHash {
         // return instance.
         RegularHash {
             salt: salt,
             hash_size: hash_size,
         }
     }
+}
 
+impl HashableFunction for RegularHash {
     /// This hash is NOT rolling
     ///
     ///
@@ -34,14 +37,18 @@ impl HashableFunction for RegularHash {
     }
 }
 
+#[derive(Debug, Clone)]
 pub struct RollingHash {
     salt: usize,
     hash_size: usize,
     first_term_multiplier: usize,
 }
 
-impl HashableFunction for RollingHash {
-    fn new(salt: usize, hash_size: usize, pattern_size: usize) -> RollingHash {
+impl RollingHash {
+    /// constructor for a rolling hash function
+    ///
+    ///
+    pub fn new(salt: usize, hash_size: usize, pattern_size: usize) -> RollingHash {
         // calculate the multiplier for the first term
         let mut first_term_multiplier: usize = 1;
         for _i in 0..pattern_size - 1 {
@@ -54,7 +61,8 @@ impl HashableFunction for RollingHash {
             first_term_multiplier: first_term_multiplier,
         }
     }
-
+}
+impl HashableFunction for RollingHash {
     fn hash(&self, &prev_hash: &usize, string2hash: &String) -> usize {
         // get first and last term of string.
         let mut string2hash2: String = string2hash.clone();
