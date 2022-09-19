@@ -15,7 +15,7 @@ fn main() {
     let pattern_size: usize = args[3].clone().parse::<usize>().unwrap();
     let hashtable_size: usize = args[4].clone().parse::<usize>().unwrap();
     if args.len() > 5 {
-        if args[4].eq("--use_rolling") {
+        if args[5].eq("--use_rolling") {
             use_rolling = true;
         }
     }
