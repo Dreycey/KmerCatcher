@@ -23,7 +23,7 @@ impl FastaPaths {
         if args.len() < 4 {
             panic!(
                 "Not enough arguments, 
-                    Usage: fasta_paths <fasta_1> <fasta_2> <kmer size> <--use_rolling [OPTIONAL]>"
+                    Usage: fasta_paths <fasta_1> <fasta_2> <kmer size> <hashtable size> <--use_rolling [OPTIONAL]>"
             );
         }
         let fasta_1 = args[1].clone();

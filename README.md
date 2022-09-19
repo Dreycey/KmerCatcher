@@ -7,7 +7,7 @@ This repository contains the source code for a genome2genome kmer comparison too
 ## Usage
 
 ```rust
-cargo run -- <genome 1> <genome 2> <kmer size>
+cargo run -- <genome 1> <genome 2> <kmer size> <hash table size> [Optional --use_rolling]
 ```
 
 ## Specific Usage
